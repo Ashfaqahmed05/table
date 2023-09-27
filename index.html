@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Table</title>
+</head>
+<style>
+    #container{
+        height: 100%;
+        width: 100%;
+        margin: 50px 0px;
+        display: flex;
+        /* flex-direction: ; */
+        justify-content: center;
+        font-family: sans-serif;
+        
+    }
+    #inputs{
+        width: 30%;
+        height: 70%;
+        margin: 0px;
+        padding: 30px;
+        background-color: rgb(236, 234, 234);
+        
+    }
+    input {
+        border: none;
+        padding: 1rem;
+        margin: 20px;
+        background: #e8e8e8;
+        box-shadow: 5px 5px 20px #c5c5c5,
+        -5px -5px 20px #ffffff;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        outline-color: #e8e8e8;
+        background: #e8e8e8;
+        box-shadow: inset 20px 20px 60px #c5c5c5,
+		inset -20px -20px 60px #ffffff;
+        transition: 0.3s;
+    }
+    .cssbuttons-io-button {
+  background: rgb(0, 166, 255);
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em rgb(39, 178, 253);
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+}
+
+    .cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em rgb(0, 166, 255);
+    right: 0.3em;
+    transition: all 0.3s;
+    }
+
+    .cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+    }
+
+    .cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: rgb(0, 166, 255);
+    }
+
+    .cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+    }
+
+    #table{
+        width: 40%;
+        margin-left: 40px;
+        text-align: center;
+    }
+    
+    #tabletag tr{
+        width: 100%;
+        margin-left: 40px;
+        text-align: center;
+        border: 1px solid black ;
+    }
+    table{
+        border: 1px solid black;
+        width: 100%;
+    }
+    th{
+        background-color: cadetblue;
+        border: cadetblue ;
+        margin: 0px;
+        color: white;
+    }
+    
+
+</style>
+<body>
+    <div id="container">
+        <div id="inputs">
+            <h1>Enter Your Data</h1>
+            <label for="name">Studen Name</label>
+            <input id="name" type="text" placeholder="Name"><br>
+            <label for="name">Father Name</label>
+            <input id="Fname" type="text" placeholder="Father Name"><br>
+            <label for="name">Score</label>
+            <input id="score" type="number" placeholder="Score"><br>
+            <button class="cssbuttons-io-button" onclick="addInfo()"> Get started
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+                </div>
+            </button>
+        </div>
+        <div id="table">
+            <table id="tabletag">
+                <tr>
+                    <th>S.no</th>
+                    <th>Name</th>
+                    <th>F.Name</th>
+                    <th>Score</th>
+                    <th>Total Score</th>
+                </tr>
+                <!-- <tr>
+                    <td id="Sno"></td>
+                    <td id="Sname"></td>
+                    <td id="SFname"></td>
+                    <td id="Score"></td>
+                    <td id="Tscore"></td>
+                </tr> -->
+            </table>
+        </div>
+    </div>
+    <script>
+        let serialnum = 1;
+        let totalScore = 0;
+
+        function addInfo() {
+            let name = document.getElementById('name').value;
+            let Fname = document.getElementById('Fname').value;
+            let score = parseFloat(document.getElementById('score').value);
+            let addTr = document.getElementById('tabletag')
+            
+            let row = document.createElement('tr')
+            row.className = 'row'
+            let Sno = document.createElement('td')
+            Sno.className = 'Sno'
+            Sno.innerText = serialnum++;
+
+            let Sname = document.createElement('td')
+            Sname.className = 'Sname'
+            Sname.innerText = name;
+
+            let SFname = document.createElement('td')
+            SFname.className = 'SFname'
+            SFname.innerText = Fname;
+
+            let Score = document.createElement('td')
+            Score.className = 'Score'
+            Score.innerText = score;
+            
+            let Tscore = document.createElement('td')
+            Tscore.className = 'Tscore'
+            totalScore += score;
+            Tscore.innerText = totalScore; 
+
+            let btn = document.createElement('button')
+            btn.className = 'btncl'
+            btn.innerText = 'Delete'
+            btn.onclick = function deletebtn (){
+                row.remove()
+            } 
+
+            tabletag.appendChild(row)
+            row.appendChild(Sno)
+            row.appendChild(Sname)
+            row.appendChild(SFname)
+            row.appendChild(Score)
+            row.appendChild(Tscore)
+            row.appendChild(btn)
+
+
+
+
+                document.getElementById('name').value = '';
+                document.getElementById('Fname').value = '';
+                document.getElementById('score').value = '';
+        }
+    </script>
+</body>
+</html>
